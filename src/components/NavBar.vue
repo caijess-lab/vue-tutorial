@@ -1,10 +1,9 @@
 <template>
-    <div class="menu" v-for="menu in menus">
-        <div class="item-menu">
+    <div class="menu">
+        <div class="item-menu" v-for="menu in menus">
             <router-link :to='menu.path'>{{menu.name}}</router-link>
         </div>
     </div>
-    <h1>{{getTitle}}</h1>
 </template>
 
 <script lang="ts">
@@ -13,26 +12,24 @@ export default {
         return {
             menus: this.$router.getRoutes()
         };
-    },
-    computed: {
-        getTitle() {
-            return this.$route.name
-        }
     }
 }
 </script>
 
 <style>
 .menu {
-    display: inline-flex;
+    display: flex;
+    margin-left: 25px;
 }
 .menu > * {
-    margin: 0 15px;
+    margin: 0 25px;
 }
-.item-menu {
-    width: fit-content;
-    height: 30px;
-    border: 1px solid grey;
-    padding: 10px 20px;
+.item-menu a {
+    text-decoration: none;
+    color: white;
+}
+.item-menu a.router-link-active {
+    border-bottom: 2px solid white;
+    padding-bottom: 5px;
 }
 </style>
