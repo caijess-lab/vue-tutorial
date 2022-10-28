@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <v-navigation-drawer app>
+    <!-- <v-navigation-drawer app> -->
     <!-- -->
     <!-- <v-avatar color="primary" size="45">BJ</v-avatar> -->
-    </v-navigation-drawer>
+    <!-- </v-navigation-drawer> -->
 
     <v-app-bar elevation="2" app>
       <v-toolbar-title>Vue Tutorial</v-toolbar-title>
@@ -33,7 +33,6 @@ import NavBar from './components/NavBar.vue'
 
 export default defineComponent({
   name: 'App',
-
   data () {
     return {
     }
@@ -43,7 +42,11 @@ export default defineComponent({
   },
   computed: {
     getTitle() {
-      return this.$route.name
+      if (this.$route.matched && this.$route.matched.length>1) {
+        return this.$route.matched[0].name;
+      } else {
+        return this.$route.name;
+      }
     }
   }
 })
